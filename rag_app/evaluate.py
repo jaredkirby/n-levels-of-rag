@@ -113,7 +113,7 @@ async def generate_keywords_for_questions(
                 },
                 {
                     "role": "assistant",
-                    "content": "Make sure to extract all possible keywords within the question itself first before generating new ones. Also expand all accronyms, identify synonyms and related topics.",
+                    "content": "Make sure to extract all possible keywords within the question itself first before generating new ones. Also expand all acronyms, identify synonyms and related topics.",
                 },
                 {"role": "user", "content": f"The question is {query.question}."},
             ],
@@ -230,6 +230,22 @@ def from_jsonl(
     table_name: str = typer.Option(help="Table to read data from"),
     eval_mode=typer.Option(help="Query Method ( semantic or fts )", default="semantic"),
 ):
+    """
+    Evaluate document retrieval based on the given input file, database path, table name, and evaluation mode.
+
+    Args:
+        input_file_path (str): Path to the jsonl file to read in labels from.
+        db_path (str): Path to the LanceDB database.
+        table_name (str): Name of the table to read data from.
+        eval_mode (str): Query method for evaluation (semantic, fts, or bm25).
+
+    Raises:
+        AssertionError: If the parent directory of the input file does not exist or if the output file does not have a .jsonl extension.
+        ValueError: If an invalid eval mode is provided.
+
+    Returns:
+        None
+    """
     assert Path(
         input_file_path
     ).parent.exists(), f"The directory {Path(input_file_path).parent} does not exist."
