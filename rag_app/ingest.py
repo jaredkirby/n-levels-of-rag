@@ -16,6 +16,15 @@ def from_folder(
     folder_path: str = typer.Option(help="Folder to read data from"),
     file_suffix: str = typer.Option(default=".md", help="File suffix to filter by"),
 ):
+    """
+    Ingests data from a folder into a given LanceDB table.
+
+    Args:
+        db_path (str): The path to the LanceDB database.
+        table_name (str): The name of the table to ingest data into.
+        folder_path (str): The path to the folder containing the data to ingest.
+        file_suffix (str, optional): The file suffix to filter by. Defaults to ".md".
+    """
     db = connect(db_path)
 
     if table_name not in db.table_names():
