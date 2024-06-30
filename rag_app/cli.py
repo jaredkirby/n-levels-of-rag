@@ -22,7 +22,7 @@ app.add_typer(
 app.add_typer(
     GenerateApp.app,
     name="generate",
-    help="Commands to help generate synthethic data from your documents",
+    help="Commands to help generate synthetic data from your documents",
 )
 app.add_typer(
     EvaluateApp.app,
