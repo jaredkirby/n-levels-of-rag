@@ -19,6 +19,21 @@ def db(
     query: str = typer.Option(help="Text to query against existing vector db chunks"),
     n: int = typer.Option(default=3, help="Maximum number of chunks to return"),
 ):
+    """
+    Query LanceDB for some results.
+
+    Args:
+        db_path (str): Your LanceDB path.
+        table_name (str): Table to ingest data into.
+        query (str): Text to query against existing vector db chunks.
+        n (int): Maximum number of chunks to return.
+
+    Raises:
+        ValueError: If the database path does not exist.
+
+    Returns:
+        None
+    """
     if not Path(db_path).exists():
         raise ValueError(f"Database path {db_path} does not exist.")
     db = connect(db_path)
