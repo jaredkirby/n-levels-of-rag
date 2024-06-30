@@ -57,7 +57,7 @@ async def gather_questions(chunks: TextChunk) -> List[EvaluationDataItem]:
 
 
 @app.command(help="Generate questions for each chunk in a given file")
-def synthethic_questions(
+def synthetic_questions(
     folder_path: str = typer.Option(help="Folder to read data from"),
     max_questions: int = typer.Option(
         help="max number of question/answer pairs to generate", default=-1
@@ -66,6 +66,18 @@ def synthethic_questions(
         help="Json file to write output to", default="output.jsonl"
     ),
 ):
+    """
+    Generate synthetic questions for each chunk in a given file.
+
+    Args:
+        folder_path (str): Folder to read data from.
+        max_questions (int): Maximum number of question/answer pairs to generate. Default is -1, which means all available questions will be generated.
+        output_path (str): Json file to write output to. Default is "output.jsonl".
+
+    Raises:
+        AssertionError: If the parent directory of the output file does not exist.
+        AssertionError: If the output file does not have a .jsonl extension.
+    """
     assert Path(
         output_path
     ).parent.exists(), f"The directory {Path(output_path).parent} does not exist."
